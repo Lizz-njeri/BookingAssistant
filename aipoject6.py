@@ -29,6 +29,16 @@ import win32com.client as wincl
 from urllib.request import urlopen
 import shutil
 import pyaudio
+import africastalking
+
+africastalking.initialize(
+    username='mara',
+    api_key='55f38e89922b55d676dd8d042eca952767a592b90d1fb8910c987c4a7a749650',
+)
+message = "Thank you for booking an Appointment with us.",
+phone = "+254714805460",
+sms = africastalking.SMS
+
 
 
 engine=pyttsx3.init('sapi5')
@@ -84,7 +94,7 @@ if __name__ =='__main__':
         if 'hello' in query:
             speak('hello, I am Jane your booking asssistant')
             speak('how may I help you?')
-        elif 'i want to book an appointment' in query:
+        elif 'book an appointment' in query:
            speak('which department?')
         elif 'optical' in query:
             speak('okay..')
@@ -96,6 +106,12 @@ if __name__ =='__main__':
             speak('which time is good for you?')
         elif '9 to 11' in query:
             speak('your appointment has been booked for 9-11')
-            
+            response = sms.send(message, phone)
+            print(response)
         elif '5 to 6' in query:
             speak('your appointment has been booked for 5-6')
+            response = sms.send(message, phone)
+            print(response)
+
+
+
