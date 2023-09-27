@@ -1,9 +1,5 @@
 # -*- coding: utf-8 -*-
-"""
-Created on Tue Mar 22 14:18:24 2022
 
-@author: mwangi
-"""
 
 import pyttsx3
 import speech_recognition as sr
@@ -36,7 +32,7 @@ africastalking.initialize(
     api_key='55f38e89922b55d676dd8d042eca952767a592b90d1fb8910c987c4a7a749650',
 )
 message = "Thank you for booking an Appointment with us.",
-phone = "+254714805460",
+phone = "+254796023689",
 sms = africastalking.SMS
 
 
