@@ -112,6 +112,8 @@ if __name__ =='__main__':
             speak('your appointment has been booked for 5-6')
             response = sms.send(message, phone)
             print(response)
+        elif 'thank you' in query:
+            speak('you are welcome')
 
 
 
