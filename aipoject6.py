@@ -28,11 +28,11 @@ import pyaudio
 import africastalking
 
 africastalking.initialize(
-    username='mara',
-    api_key='55f38e89922b55d676dd8d042eca952767a592b90d1fb8910c987c4a7a749650',
+    username='API_USERNAME',
+    api_key='API_KEY',
 )
 message = "Thank you for booking an Appointment with us.",
-phone = "+254796023689",
+phone = "+254792050576",
 sms = africastalking.SMS
 
 
