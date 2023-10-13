@@ -1,67 +1,36 @@
-# -*- coding: utf-8 -*-
-"""
-Created on Tue Mar 22 14:18:24 2022
-
-@author: mwangi
-"""
-
-import pyttsx3
-import speech_recognition as sr
-import subprocess
-import tkinter
-import json
-import random
-import operator
-import datetime
-import webbrowser
+from gtts import gTTS
 import os
-#from gtts import gTTS
-#import winshell
-#import pyjokes
-#import feedparser
-import smtplib
-#import ctypes
-import time
-import requests
-#import wolframalpha
-#from clint.textui import progress
-import win32com.client as wincl
-from urllib.request import urlopen
-import shutil
-import pyaudio
-
-
-engine=pyttsx3.init('sapi5')
-voices=engine.getProperty('voices')
-engine.setProperty('voice', voices[1].id)
+import speech_recognition as sr
+import datetime
 
 def speak(audio):
-    engine.say(audio)
-    engine.runAndWait()
+    tts = gTTS(text=audio, lang='en')
+    tts.save("output.mp3")
+    os.system("mpg321 output.mp3")  # You might need to install mpg321 to play the audio
 
-def wishMe():
-    hour= int(datetime.datetime.now().hour)
-    if hour>= 0 and hour<12:
-        speak("Good Morning ")
-    elif hour>=12 and hour<18:
-        speak("Good Afternoon ")
+def wish_me():
+    hour = datetime.datetime.now().hour
+    if 0 <= hour < 12:
+        speak("Good Morning")
+    elif 12 <= hour < 18:
+        speak("Good Afternoon")
     else:
         speak("Good Evening")
-        
-    assname=("Jane")
+
+    ass_name = "Jane"
     speak("I am your Assistant")
-    speak(assname)
-    speak("How can i help you")
-    
-def takeCommand():
-    r=sr.Recognizer()
+    speak(ass_name)
+    speak("How can I help you")
+
+def take_command():
+    r = sr.Recognizer()
     with sr.Microphone() as source:
         print("Listening...")
-        r.pause_threshold=1
-        audio=r.listen(source)
+        r.pause_threshold = 1
+        audio = r.listen(source)
     try:
         print('Recognizing...')
-        query=r.recognize_google(audio, language='en-in')
+        query = r.recognize_google(audio, language='en-in')
         print(f"User said: {query}\n")
     except Exception as e:
         print(e)
@@ -70,32 +39,27 @@ def takeCommand():
         return "None"
     return query
 
-    
-if __name__ =='__main__':
-    clear=lambda: os.system('cls')
-    
+if __name__ == '__main__':
+    clear = lambda: os.system('clear')  # Use 'clear' instead of 'cls' for Linux
     clear()
-    wishMe()
+    wish_me()
 
-    
     while True:
-        query=takeCommand().lower()
-        
+        query = take_command().lower()
+
         if 'hello' in query:
-            speak('hello, I am Jane your booking asssistant')
-            speak('how may I help you?')
+            speak('Hello, I am Jane, your booking assistant.')
+            speak('How may I help you?')
         elif 'i want to book an appointment' in query:
-           speak('which department?')
+            speak('Which department?')
         elif 'optical' in query:
-            speak('okay..')
-            speak('what is your name')
-            uname=takeCommand()
-            speak('Welcome to blue hospital')
-            speak(uname)
-            speak('time available is 9-11 and 5-6')
-            speak('which time is good for you?')
+            speak('Okay...')
+            speak('What is your name?')
+            user_name = take_command()
+            speak('Welcome to Blue Hospital')
+            speak(user_name)
+            speak('Available appointment times are from 9 to 11 and 5 to 6. Which time is good for you?')
         elif '9 to 11' in query:
-            speak('your appointment has been booked for 9-11')
-            
+            speak('Your appointment has been booked for 9 to 11')
         elif '5 to 6' in query:
-            speak('your appointment has been booked for 5-6')
+            speak('Your appointment has been booked for 5 to 6')
