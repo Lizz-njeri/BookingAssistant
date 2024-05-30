@@ -196,7 +196,7 @@ def search_ecitizen(query):
             speak(f"Sorry, I couldn't find any results for {query}.")
     except Exception as e:
         print(f"An error occurred: {e}")
-        speak(f"Sorry, there was an error searching eCitizen for {query}.")
+        #speak(f"Sorry, there was an error searching eCitizen for {query}.")
     
     driver.quit()
 
@@ -215,7 +215,7 @@ def navigate_to_ecitizen_login():
         speak("You are now on the eCitizen login page.")
     except Exception as e:
         print(f"An error occurred: {e}")
-        speak("Sorry, I couldn't navigate to the eCitizen login page.")
+        #speak("Sorry, I couldn't navigate to the eCitizen login page.")
     
     # Optionally, you can fill in the login details here if required
 
@@ -236,7 +236,7 @@ def navigate_to_ecitizen_signup():
         speak("You are now on the eCitizen signup page.")
     except Exception as e:
         print(f"An error occurred: {e}")
-        speak("Sorry, I couldn't navigate to the eCitizen signup page.")
+        #speak("Sorry, I couldn't navigate to the eCitizen signup page.")
     
     # Optionally, you can fill in the signup details here if required
 
@@ -250,7 +250,7 @@ def initUI():
     canvas = tk.Canvas(root, height=500, width=800)
     canvas.pack()
 
-    frame = tk.Frame(root, bg='#80c1ff', bd=5)
+    frame = tk.Frame(root, bg='#003B4A', bd=5)
     frame.place(relx=0.5, rely=0.1, relwidth=0.75, relheight=0.1, anchor='n')
 
     button = tk.Button(frame, text="Speak", font=40, command=handleCommand)
@@ -259,7 +259,7 @@ def initUI():
     label = tk.Label(frame, text="Click 'Speak' and say your command", font=40)
     label.place(relx=0, relheight=1, relwidth=0.65)
 
-    lower_frame = tk.Frame(root, bg='#80c1ff', bd=10)
+    lower_frame = tk.Frame(root, bg='#003B4A', bd=10)
     lower_frame.place(relx=0.5, rely=0.25, relwidth=0.75, relheight=0.6, anchor='n')
 
     text_box = tk.Text(lower_frame, font=40)
